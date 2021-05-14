@@ -39,5 +39,18 @@ namespace Sistema_Banco
             return Clientes.Contains(c);
 
         }
+
+        public bool IsClienteEspecial(string cpf)
+        {
+            foreach(Cliente c in this.Clientes)
+            {
+                if (c.Cpf.Equals(cpf))
+                {
+                    if (c is ClienteEspecial) return true;
+                    return false;
+                }
+            }
+            throw new Exception("Cliente não encontrado!");
+        }
     }
 }

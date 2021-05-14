@@ -10,12 +10,19 @@ namespace Sistema_Banco
         private float _jurosChequeEspecial;
         public float LimiteChequeEspecial { get => _limiteChequeEspecial; private set => _limiteChequeEspecial = value; }
         public float JurosChequeEspecial { get => _jurosChequeEspecial; private set => _jurosChequeEspecial = value; }
-        public ContaCorrente(int numAgencia, int numConta, string cpfCliente, float saldo,
-            float limiteChequeEspecial,
-            float jurosChequeEspecial) : base(numAgencia, numConta, cpfCliente, saldo)
+        public ContaCorrente(int numAgencia, int numConta, string cpfCliente, float saldo, 
+            bool isClienteEspecial) : base(numAgencia, numConta, cpfCliente, saldo)
         {
-            this.LimiteChequeEspecial = limiteChequeEspecial;
-            this.JurosChequeEspecial = jurosChequeEspecial;
+            if (!isClienteEspecial)
+            {
+                this.LimiteChequeEspecial = 100f;
+                this.JurosChequeEspecial = 0.01f;
+            }
+            else
+            {
+                this.LimiteChequeEspecial = 1000f;
+                this.JurosChequeEspecial = 0.005f;
+            }
         }
 
         public float CobrarJuros(int dias)
