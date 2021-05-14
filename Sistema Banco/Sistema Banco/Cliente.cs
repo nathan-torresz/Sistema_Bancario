@@ -17,9 +17,27 @@ namespace Sistema_Banco
             Nome = nome;
             Cpf = cpf;
         }
-        public bool Sacar(Conta c)
+        public bool Sacar(Conta c, float valor)
         {
-
+            if (this.Cpf.Equals(c.CpfCliente)) return c.Retirar(valor);
+            return false;
+        }
+        public bool Depositar(Conta c, float valor)
+        {
+            if (this.Cpf.Equals(c.CpfCliente)) return c.Depositar(valor);
+            return false;
+        }
+        public bool Transferencia(Conta origem, Conta destino, float valor)
+        {
+            if (this.Cpf.Equals(origem.CpfCliente) &&
+                (origem != destino) && valor > 0)
+            {
+                if (origem.Retirar(valor))
+                {
+                    return destino.Depositar(valor);
+                }
+            }
+            return false;
         }
     }
 }

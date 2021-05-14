@@ -14,7 +14,7 @@ namespace Sistema_Banco
         public int NumAgencia { get => _numAgencia;}
         public int NumConta { get => _numConta;}
         public string CpfCliente { get => _cpfCliente;}
-        public float Saldo { get => _saldo; private set => _saldo = value; }
+        public float Saldo { get => _saldo; protected set => _saldo = value; }
 
         public Conta(int numAgencia, int numConta, string cpfCliente, float saldo)
         {
